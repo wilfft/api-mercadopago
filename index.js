@@ -35,3 +35,8 @@ app.get("/pagar", async (req, res) => {
     return res.send(err.message);
   }
 });
+
+app.post("/not", (req, res) => {
+  console.log(req.query);
+  res.send("OK");
+});
