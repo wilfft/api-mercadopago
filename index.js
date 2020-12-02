@@ -37,6 +37,29 @@ app.get("/pagar", async (req, res) => {
 });
 
 app.post("/not", (req, res) => {
-  console.log(req.query);
+  var id = req.query.id; // recebe o id da compra
+  setTimeout(() => {
+    var filtro = {
+      "order.id": id,
+    }; //pesquisa no banco de dados do mercadopago
+    MercadoPago.payment
+      .search({ qs: filtro })
+      .then((data) => {
+        var pagamento = data.body.results[0];
+        if (pagamento != undefined) {
+          console.log(pagamento);
+          console.log(pagamento.external_reference); //id criado da venda
+          console.log(pagamento.status); //aprovado ou nao
+          if (status === "approved") {
+            //Banco.definirComoPago(pagamento.external_reference)
+            //alguma funçao no bancoq ue vai localizar o id do pedido
+          } else console.log("pagamento nao existe");
+        }
+      })
+      .catch((err) => console.log(err));
+  });
+  20000;
   res.send("OK");
 });
+
+//tempo pra pesquisar no bd do MP antes
