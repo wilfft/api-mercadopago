@@ -1,4 +1,4 @@
-# api-mercadopago
+# Uma api-mercadopago simples do mercado pago, totalmente funcional, porém preciso deploya para retornar o status de pagamento
 
 ### Learning how to integrate MercadoPago API
 
